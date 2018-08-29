@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block navbar %}
+
+          {% if app.user %}
+            <span>Logged as: <b>{{ app.user.username }}</b>
+            Your wallet: {{ app.user.wallet|number_format(2, '.', ',') }} PLN
+            <a href="{{ path('logout') }}">Log out</a></span>
+          {% else %}
+            <a href="{{ path('login') }}">Log in</a>
+          {% endif %}
+
+        {% endblock %}
+        {% block body %}
+          <h1>Homepage</h1>
+
+          <p><a href="{{ path('article_list') }}">All articles</a></p>
+          <p><a href="{{ path('category_list') }}">Categories</a></p>
+          <p><a href="{{ path('tag_list') }}">Tags</a></p>
+          <p><a href="{{ path('author_list') }}">Authors</a></p>
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
